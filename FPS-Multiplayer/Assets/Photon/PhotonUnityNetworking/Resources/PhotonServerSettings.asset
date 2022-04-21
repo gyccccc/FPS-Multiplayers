@@ -20,7 +20,7 @@ MonoBehaviour:
     AppVersion: 
     UseNameServer: 0
     FixedRegion: 
-    Server: 192.168.1.152
+    Server: 127.0.0.1
     Port: 5055
     ProxyServer: 
     Protocol: 0
@@ -43,6 +43,12 @@ MonoBehaviour:
   - RPC_ReleaseTrigger
   - RPC_ReloadAmmo
   - RPC_TakeDamage
+  - SwapWeapon1
+  - SwapWeapon2
+  - RPC_SwapWeapon1
+  - RPC_SwapWeapon2
+  - AiRPC_HoldTrigger
+  - RPC_AiHoldTrigger
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

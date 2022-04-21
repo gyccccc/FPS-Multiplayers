@@ -18,6 +18,9 @@ TagManager:
   - Wood
   - Dirt
   - GlobalCamera
+  - ship
+  - canvas
+  - ui
   layers:
   - Default
   - TransparentFX

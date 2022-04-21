@@ -16,6 +16,9 @@ namespace Scripts.Weapon
         protected override void Awake()
         {
             base.Awake();
+            FirearmsShootingAudioSource.clip = null;
+            FirearmsShootingAudioSource.clip = null;
+
             reloadAmmoCheckerCoroutine = CheckReloadAmmoAnimationEnd();
             mouseLook = FindObjectOfType<FPMouseLook>();
         }
@@ -25,6 +28,11 @@ namespace Scripts.Weapon
         {
             if (CurrentAmmo <= 0) return;
             if (!IsAllowShooting()) return;
+            GunStateInfo = GunAnimator.GetCurrentAnimatorStateInfo(GunAnimator.GetLayerIndex("Base Layer"));
+            if (GunStateInfo.IsTag("Takout_weapon") || GunStateInfo.IsTag("holster"))
+            {
+                return;
+            }
             GunStateInfo = GunAnimator.GetCurrentAnimatorStateInfo(GunAnimator.GetLayerIndex("Reload Layer"));
             if (GunStateInfo.IsTag("ReloadAmmo") || GunStateInfo.IsTag("ReloadOutOf"))
             {
@@ -48,7 +56,7 @@ namespace Scripts.Weapon
         protected override void Reload()
         {
             GunStateInfo = GunAnimator.GetCurrentAnimatorStateInfo(GunAnimator.GetLayerIndex("Reload Layer"));
-            if (CurrentMaxAmmoCarried <= 0 || GunStateInfo.IsTag("ReloadAmmo")|| GunStateInfo.IsTag("ReloadOutOf"))
+            if (CurrentMaxAmmoCarried <= 0 || GunStateInfo.IsTag("ReloadAmmo")|| GunStateInfo.IsTag("ReloadOutOf")|| CurrentAmmo == AmmoInMag)
             {
                 return;
             }

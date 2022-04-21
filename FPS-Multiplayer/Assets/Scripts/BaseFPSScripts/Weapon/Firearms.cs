@@ -2,13 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 namespace Scripts.Weapon
 {
     public abstract class Firearms : IWeapon
     {
         public GameObject BulletPrefab;
-
+        private PhotonView photonView;
         public Camera EyeCamera;
         public Camera GunCamera;
 
@@ -45,7 +46,6 @@ namespace Scripts.Weapon
 
         public int GetCurrentAmmo => CurrentAmmo;
         public int GetCurrentMaxAmmoCarried => CurrentMaxAmmoCarried;
-
         protected int CurrentAmmo;
         protected int CurrentMaxAmmoCarried;
         protected float LastFireTime;
@@ -54,12 +54,15 @@ namespace Scripts.Weapon
         protected float GunOriginFOV;
         protected bool IsAiming;
         protected bool IsHoldingTrigger;
+        protected bool IsHolstling;
         private IEnumerator doAimCoroutine;
         private Vector3 originalEyePosition;
         protected Transform gunCameraTransform;
-
+        //private uiManager ui;
         protected void Start()
         {
+             //ui = GameObject.FindGameObjectWithTag("ui").GetComponent<uiManager>();
+
         }
 
         protected virtual void Awake()
@@ -143,25 +146,25 @@ namespace Scripts.Weapon
             {
                 yield return null;
 
-                float tmp_EyeCurrentFOV = 0;
-                EyeCamera.fieldOfView =
-                    Mathf.SmoothDamp(EyeCamera.fieldOfView,
-                        IsAiming ? rigoutScopeInfo.EyeFov : EyeOriginFOV,
-                        ref tmp_EyeCurrentFOV,
-                        Time.deltaTime * 2);
+                //float tmp_EyeCurrentFOV = 0;
+                //EyeCamera.fieldOfView =
+                //    Mathf.SmoothDamp(EyeCamera.fieldOfView,
+                //        IsAiming ? rigoutScopeInfo.EyeFov : EyeOriginFOV,
+                //        ref tmp_EyeCurrentFOV,
+                //        Time.deltaTime * 2);
 
-                float tmp_GunCurrentFOV = 0;
-                GunCamera.fieldOfView =
-                    Mathf.SmoothDamp(GunCamera.fieldOfView,
-                        IsAiming ? rigoutScopeInfo.GunFov : GunOriginFOV,
-                        ref tmp_GunCurrentFOV,
-                        Time.deltaTime * 2);
+                //float tmp_GunCurrentFOV = 0;
+                //GunCamera.fieldOfView =
+                //    Mathf.SmoothDamp(GunCamera.fieldOfView,
+                //        IsAiming ? rigoutScopeInfo.GunFov : GunOriginFOV,
+                //        ref tmp_GunCurrentFOV,
+                //        Time.deltaTime * 2);
 
-                Vector3 tmp_RefPosition = Vector3.zero;
-                gunCameraTransform.localPosition = Vector3.SmoothDamp(gunCameraTransform.localPosition,
-                    IsAiming ? rigoutScopeInfo.GunCameraPosition : originalEyePosition,
-                    ref tmp_RefPosition,
-                    Time.deltaTime * 2);
+                //Vector3 tmp_RefPosition = Vector3.zero;
+                //gunCameraTransform.localPosition = Vector3.SmoothDamp(gunCameraTransform.localPosition,
+                //    IsAiming ? rigoutScopeInfo.GunCameraPosition : originalEyePosition,
+                //    ref tmp_RefPosition,
+                //    Time.deltaTime * 2);
             }
         }
 
@@ -169,6 +172,8 @@ namespace Scripts.Weapon
         {
             IsAiming = _isAiming;
 
+            //ui.aiming(IsAiming);
+            
             GunAnimator.SetBool("Aim", IsAiming);
             if (doAimCoroutine == null)
             {

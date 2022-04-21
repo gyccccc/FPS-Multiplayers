@@ -9,9 +9,23 @@ public class launch : MonoBehaviourPunCallbacks
     // Start is called before the first frame update
     public InputField RoomName;
     private bool connectToMaster;
-    private bool joinedRoom;
+    public bool joinedRoom;
+    public bool isServer = false;
     public string PlayerPrefabName;
+    //public string ShipPerfabName;
     public Vector3 SpawnPoint;
+    public GameObject ship;
+    private GameObject ui;
+    public GameObject GameManager;
+    public GameObject LevelManager;
+
+
+
+    public void Start()
+    {
+        ui = GameObject.FindGameObjectWithTag("ui");
+        ui.SetActive(false);
+    }
 
     public void ConnectToMaster()
     {
@@ -19,16 +33,18 @@ public class launch : MonoBehaviourPunCallbacks
         PhotonNetwork.GameVersion = "Alpha";
 
     }
-    
+
 
     public void CreatRoom()
     {
-        if(!connectToMaster || joinedRoom)
+        if (!connectToMaster || joinedRoom)
         {
             return;
         }
         PhotonNetwork.CreateRoom(RoomName.text,
             new Photon.Realtime.RoomOptions() { MaxPlayers = 16 }, Photon.Realtime.TypedLobby.Default);
+        joinedRoom = true;
+        isServer = true;
     }
 
     public override void OnConnectedToMaster()
@@ -39,22 +55,30 @@ public class launch : MonoBehaviourPunCallbacks
 
     public void joinRoom()
     {
-        if(!connectToMaster || joinedRoom)
+        if (!connectToMaster || joinedRoom)
         {
             return;
         }
         PhotonNetwork.JoinRoom(RoomName.text);
+        //GameObject.Find("LevelManager").SetActive(false);
+        //GameObject.Find("GameManager").SetActive(false);
+        
     }
 
     public override void OnCreatedRoom()
     {
         base.OnCreatedRoom();
-        joinedRoom = true;
+        GameManager.SetActive(true);
+        LevelManager.SetActive(true);
+
+        ////GameObject player = PhotonNetwork.Instantiate(ShipPerfabName, new Vector3(0,0,0), Quaternion.identity);
+
     }
 
     public override void OnJoinedRoom()
     {
         base.OnJoinedRoom();
+        joinedRoom = true;
         Debug.Log("joined room");
         StartSpawn(0);
         Player.Respawn += StartSpawn;
@@ -75,8 +99,19 @@ public class launch : MonoBehaviourPunCallbacks
     private IEnumerator WaitToInstantiatePlayer(float _timeToSpawn)
     {
         yield return new WaitForSeconds(_timeToSpawn);
-        PhotonNetwork.Instantiate(PlayerPrefabName, SpawnPoint, Quaternion.identity);
-
+        GameObject ship = GameObject.FindGameObjectWithTag("ship");
+        Vector3 spawnPos = new Vector3(ship.transform.position.x + Random.Range(0, 20), ship.transform.position.y, ship.transform.position.z);
+        //GameObject player = PhotonNetwork.Instantiate(PlayerPrefabName, ship.transform.position, Quaternion.identity);
+        GameObject player = PhotonNetwork.Instantiate(PlayerPrefabName, spawnPos, Quaternion.identity);
+        //ship.GetComponent<shipManager>().boarding(player);
+        player.GetComponent<followShip>().temp = ship.GetComponent<shipManager>();
+        ui.SetActive(true);
+        spawnPos.y = -26.63112f;
+        if (isServer)
+        {
+            GameObject ai = PhotonNetwork.Instantiate("ai", spawnPos, Quaternion.identity);
+            //ai.GetComponent<Nav>().goal = 
+        }
     }
 
 

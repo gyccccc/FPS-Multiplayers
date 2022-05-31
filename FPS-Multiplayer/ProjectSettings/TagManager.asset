@@ -21,6 +21,7 @@ TagManager:
   - ship
   - canvas
   - ui
+  - player
   layers:
   - Default
   - TransparentFX
@@ -33,9 +34,9 @@ TagManager:
   - FP_View
   - Items
   - Gun
-  - 
-  - 
-  - 
+  - Mipmap
+  - RedPoint
+  - ship
   - 
   - 
   - 

@@ -51,7 +51,7 @@ public class WeaponManager : MonoBehaviour
     private void Start()
     {
         photonView = GetComponent<PhotonView>();
-        Debug.Log($"Current weapon is null? {carriedWeapon == null}");
+        //Debug.Log($"Current weapon is null? {carriedWeapon == null}");
 
         MainWeapon = photonView.IsMine ? WeaponInfos[0].FP_Weapon : WeaponInfos[0].TP_Weapon;
         //attention
@@ -91,7 +91,6 @@ public class WeaponManager : MonoBehaviour
             photonView.RPC("RPC_SwapWeapon2", RpcTarget.All);
 
         }
-
         if (Input.GetMouseButton(0))
         {
             //TODO:hold the Trigger

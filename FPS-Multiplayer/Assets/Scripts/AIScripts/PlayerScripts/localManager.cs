@@ -21,9 +21,12 @@ public class localManager : MonoBehaviour
         photonView = GetComponent<PhotonView>();
         if(photonView.IsMine)
         {
-            gameObject.AddComponent<AudioListener>();
+            if(!gameObject.TryGetComponent<AudioListener>(out AudioListener tempAudioListener))
+            {
+                gameObject.AddComponent<AudioListener>();
+            }
             GameObject mipmap = GameObject.Find("MipmapCamera");
-            mipmap.GetComponent <MipmapCameraManager>().player = FPArms;
+            mipmap.GetComponent<MipmapCameraManager>().player = FPArms;
             return;
         }
         FPArms.SetActive(false);

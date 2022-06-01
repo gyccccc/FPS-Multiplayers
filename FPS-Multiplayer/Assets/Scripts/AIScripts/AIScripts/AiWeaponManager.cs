@@ -49,7 +49,7 @@ public class AiWeaponManager : MonoBehaviour
     private void Start()
     {
         photonView = GetComponent<PhotonView>();
-        Debug.Log($"Current weapon is null? {carriedWeapon == null}");
+        //Debug.Log($"Current weapon is null? {carriedWeapon == null}");
 
         MainWeapon = WeaponInfos[0].TP_Weapon;
         //attention
@@ -65,7 +65,7 @@ public class AiWeaponManager : MonoBehaviour
         //    SecondaryWeapon.gameObject.SetActive(false);
         //}
         carriedWeapon = MainWeapon;
-        CharacterControllerMovement.SetupAnimator(carriedWeapon.GunAnimator);
+        //CharacterControllerMovement.SetupAnimator(carriedWeapon.GunAnimator);
     }
 
     private void Update()

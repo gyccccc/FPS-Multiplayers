@@ -8943,9 +8943,7 @@ GameObject:
   - component: {fileID: 6208242651454519939}
   - component: {fileID: 7026614095061373996}
   - component: {fileID: 730567226704215559}
-  - component: {fileID: 1260710556359655372}
   - component: {fileID: 2389470812658135248}
-  - component: {fileID: 1951098771326776251}
   - component: {fileID: 3517387570409463557}
   - component: {fileID: 3860375530893898428}
   - component: {fileID: 3891095212656453458}
@@ -8955,7 +8953,7 @@ GameObject:
   - component: {fileID: 5109372353111829050}
   m_Layer: 0
   m_Name: ai
-  m_TagString: Untagged
+  m_TagString: ai
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9050,29 +9048,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBar: {fileID: 1715426086970833152}
   healthText: {fileID: 5488329807646405830}
---- !u!114 &1260710556359655372
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1260710556359655371}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38e00c6b93d61ff41953d723ea1a82fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  characterAnimator: {fileID: 6382586823329340729}
-  tp_CharacterAnimator: {fileID: 1642479307870945896}
-  SprintingSpeed: 8
-  WalkSpeed: 4
-  SprintingSpeedWhenCrouched: 2
-  WalkSpeedWhenCrouched: 1.5
-  Gravity: 9.8
-  GlidLimit: 7
-  GlidSpeedMax: 12
-  JumpHeight: 2
-  CrouchHeight: 1
 --- !u!114 &2389470812658135248
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9086,7 +9061,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LocalScripts:
-  - {fileID: 1260710556359655372}
+  - {fileID: 0}
   - {fileID: 4548684804625233899}
   FP_Camera: {fileID: 4566208924331251680}
   ENV_Camera: {fileID: 4566208924395162669}
@@ -9104,14 +9079,6 @@ MonoBehaviour:
   - {fileID: 6138139320641579191}
   FPArms: {fileID: 4548684804625233897}
   MipmapManager: {fileID: 0}
---- !u!81 &1951098771326776251
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1260710556359655371}
-  m_Enabled: 0
 --- !u!114 &3517387570409463557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9161,7 +9128,7 @@ MonoBehaviour:
     WeaponName: m416
     FP_Weapon: {fileID: 0}
     TP_Weapon: {fileID: 6320231638307535936}
-  CharacterControllerMovement: {fileID: 1260710556359655372}
+  CharacterControllerMovement: {fileID: 0}
   Arms: []
   CheckItemLayerMask:
     serializedVersion: 2

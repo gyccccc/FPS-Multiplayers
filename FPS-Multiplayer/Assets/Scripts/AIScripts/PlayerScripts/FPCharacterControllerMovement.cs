@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityTemplateProjects.MultiplayerScripts;
 
 public class FPCharacterControllerMovement : MonoBehaviour
 {
@@ -62,6 +63,8 @@ public class FPCharacterControllerMovement : MonoBehaviour
                 CurrentSpeed = Input.GetKey(KeyCode.LeftShift) ? SprintingSpeed : WalkSpeed;
             }
         }
+
+
         
         if (characterController.isGrounded)
         {
@@ -174,7 +177,7 @@ public class FPCharacterControllerMovement : MonoBehaviour
 
     internal void SetupAnimator(Animator _animator)
     {
-        Debug.Log($"Execute! the animator is empty??? {_animator == null}");
+        //Debug.Log($"Execute! the animator is empty??? {_animator == null}");
         characterAnimator = _animator;
     }
 
@@ -191,8 +194,22 @@ public class FPCharacterControllerMovement : MonoBehaviour
         //慢慢减速 这个减速对应的秒还是没有搞得太清楚
         movementDirection.y -= Gravity * Time.deltaTime;
         var tmp_Movement2 = CurrentSpeed * Time.deltaTime * movementDirection;
-
         characterController.Move(tmp_Movement2);
+
+        //射线检测 若撞到敌人将造成伤害
+        Ray ray = new Ray(this.gameObject.transform.position, this.gameObject.transform.forward);
+        bool isCollider = Physics.Raycast(ray, out RaycastHit hit);
+        if (isCollider)
+        {
+            Debug.Log(hit.collider.gameObject.tag);
+            if (hit.collider.gameObject.tag == "ai" && hit.distance < 3)//如果可以被击中 15m开枪
+            {
+                if (hit.collider.gameObject.TryGetComponent(out IDamager tmp_Damager))
+                {
+                    tmp_Damager.TakeDamage(50);
+                }
+            }
+        } 
     }
 
     private void UnGlid()
@@ -204,5 +221,14 @@ public class FPCharacterControllerMovement : MonoBehaviour
         characterAnimator.SetBool("isGlid", false);
         characterController.height = originHeight;
         return;
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        // 销毁当前游戏物体
+        //Destroy(this.gameObject);
+        if(collision.gameObject.tag == "ai")
+            Debug.Log(this.gameObject.name + "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+        Debug.Log(collision.gameObject.name + "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
     }
 }

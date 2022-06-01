@@ -54,7 +54,10 @@ public class AiPlayer : MonoBehaviour, IDamager
         if (IsDeath() && photonView.IsMine)
         {
             gameObject.SetActive(false);
+            Vector3 tempPose = gameObject.transform.position;
             PhotonNetwork.Destroy(this.gameObject);
+            PhotonNetwork.Instantiate("Body", tempPose, Quaternion.identity);
+            //
             //死亡就销毁，全部死亡游戏结束 
 
             //if(ui)

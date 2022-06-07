@@ -24,6 +24,10 @@ public class AiController : MonoBehaviour
     //[SerializeField] internal Animator GunAnimator;
     public float SprintingSpeedWhenCrouched;
     public float WalkSpeedWhenCrouched;
+    public int DamagePerShoot = 10;
+    public float FiringRange = 30;
+    public int FindPlayerMaxDis = 40;
+
     public Transform RayPoint;
     public Transform HeadPoint;
 
@@ -34,7 +38,6 @@ public class AiController : MonoBehaviour
     private IEnumerator FindPlayerIE;
     public GameObject target;
     private Nav thisNav;
-    private int doubleMaxDis = 900;
     private int AiShootingDistance = 10;
 
     private Vector3 offset = new Vector3(0, 0.3f, 0);
@@ -77,7 +80,7 @@ public class AiController : MonoBehaviour
             //weapon.Shooting();
             if (isCollider)
             {
-                if (hit.collider.gameObject == this.target && hit.distance < AiShootingDistance)//如果可以被击中 15m开枪
+                if (hit.collider.gameObject == this.target && hit.distance < FiringRange)//如果可以被击中 15m开枪
                 {
                     StopFollow();
                     //面向玩家
@@ -124,7 +127,7 @@ public class AiController : MonoBehaviour
             this.target = null;
             foreach (GameObject player in PlayerList)
             {
-                if ((player.transform.position - this.transform.position).sqrMagnitude < doubleMaxDis)//距离平方比较
+                if ((player.transform.position - this.transform.position).sqrMagnitude < FindPlayerMaxDis * FindPlayerMaxDis)//距离平方比较
                 {
                     this.target = player;//以该玩家位目标
                     Follow();
@@ -171,7 +174,7 @@ public class AiController : MonoBehaviour
         {
             if (this.target.TryGetComponent(out IDamager tmp_Damager))
             {
-                tmp_Damager.TakeDamage(10);
+                tmp_Damager.TakeDamage(DamagePerShoot);
             }
             
             RaiseEventOptions tmp_RaiseEventOptions = new RaiseEventOptions() { Receivers = ReceiverGroup.All };

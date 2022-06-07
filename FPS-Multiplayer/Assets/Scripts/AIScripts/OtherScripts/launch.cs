@@ -18,7 +18,7 @@ public class launch : MonoBehaviourPunCallbacks
     private GameObject ui;
     public GameObject GameManager;
     public GameObject LevelManager;
-
+    public Vector3 offset = new Vector3(3, 3, 3);
 
 
     public void Start()
@@ -112,6 +112,7 @@ public class launch : MonoBehaviourPunCallbacks
         if (isServer)
         {
             GameObject ai = PhotonNetwork.Instantiate("ai", spawnPos, Quaternion.identity);
+            GameObject ai2 = PhotonNetwork.Instantiate("GhillieSuit_ai", spawnPos+offset, Quaternion.identity);
             //ai.GetComponent<Nav>().goal = 
         }
     }

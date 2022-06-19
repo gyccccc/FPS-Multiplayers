@@ -9141,6 +9141,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HeathAll: 100
   Heath: 100
+  BodyName: Body
 --- !u!114 &3891095212656453458
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9196,7 +9197,6 @@ MonoBehaviour:
   WalkSpeed: 0
   SprintingSpeedWhenCrouched: 0
   WalkSpeedWhenCrouched: 0
-  DamagePerShoot: 10
   FiringRange: 20
   FindPlayerMaxDis: 40
   RayPoint: {fileID: 7375632729637340562}
@@ -57899,6 +57899,8 @@ MonoBehaviour:
     GunCameraPosition: {x: 0, y: 0, z: 0}
   AI: {fileID: 1260710556359655371}
   ac: {fileID: 0}
+  AiDamageRate: 0.15
+  DamagePerShoot: 10
 --- !u!114 &3051396366264112772
 MonoBehaviour:
   m_ObjectHideFlags: 0

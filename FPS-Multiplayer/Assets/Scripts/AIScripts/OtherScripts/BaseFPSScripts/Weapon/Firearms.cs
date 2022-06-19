@@ -99,6 +99,8 @@ namespace Scripts.Weapon
 
         protected bool IsAllowShooting()
         {
+            if (CurrentAmmo <= 0) return false;
+
             return Time.time - LastFireTime > 1 / FireRate;
         }
 

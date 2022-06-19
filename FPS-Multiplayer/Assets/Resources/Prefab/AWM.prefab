@@ -5323,7 +5323,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4206115769248859112}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.042, y: 0.027, z: 0.041}
+  m_LocalPosition: {x: 0.134, y: 0.082, z: 0.181}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4103014651499764253}
@@ -5354,7 +5354,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5225174058157736539}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.029, z: 0.476}
+  m_LocalPosition: {x: -0, y: 0.112, z: 1.304}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6946226282429693503}
@@ -24402,8 +24402,8 @@ MonoBehaviour:
   ImpactAudioData: {fileID: 11400000, guid: efa3b3a9dd0c6224d9a43fc7fd1c0961, type: 2}
   BulletImpactPrefab: {fileID: 0}
   BulletSpeed: 200
-  FireRate: 1
-  AmmoInMag: 10
+  FireRate: 0.5
+  AmmoInMag: 5
   MaxAmmoCarried: 1200
   SpreadAngle: 0
   GunAnimator: {fileID: 0}
@@ -24416,6 +24416,8 @@ MonoBehaviour:
     GunCameraPosition: {x: 0, y: 0, z: 0}
   AI: {fileID: 0}
   ac: {fileID: 0}
+  AiDamageRate: 0.3
+  DamagePerShoot: 40
 --- !u!114 &2205803709220409878
 MonoBehaviour:
   m_ObjectHideFlags: 0

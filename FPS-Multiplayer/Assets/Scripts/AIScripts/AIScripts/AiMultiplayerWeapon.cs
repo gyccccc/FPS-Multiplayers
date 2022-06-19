@@ -8,6 +8,8 @@ public class AiMultiplayerWeapon : Firearms
     private IEnumerator reloadAmmoCheckerCoroutine;
     public GameObject AI;
     public AiController ac;
+    public float AiDamageRate = 0.15f;
+    public int DamagePerShoot = 10;
 
     private void Start()
     {
@@ -17,17 +19,16 @@ public class AiMultiplayerWeapon : Firearms
 
     protected override void Shooting()
     {
-        if (CurrentAmmo <= 0) return;
         if (!IsAllowShooting()) return;
         MuzzleParticle.Play();
         CurrentAmmo -= 1;
-        GunAnimator.SetLayerWeight(2, 1);
+        //GunAnimator.SetLayerWeight(2, 1);
         GunAnimator.SetTrigger("Fire");
         CasingParticle.Play();
         FirearmsShootingAudioSource.clip = FirearmsAudioData.ShootingAudio;
         FirearmsShootingAudioSource.Play();
         LastFireTime = Time.time;
-        ac.Damage();
+        ac.Damage(AiDamageRate, DamagePerShoot);
     }
 
     protected override void Reload()

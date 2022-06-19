@@ -1726,7 +1726,7 @@ GameObject:
   - component: {fileID: 5363409460528143963}
   m_Layer: 0
   m_Name: Body
-  m_TagString: Untagged
+  m_TagString: body
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1815,6 +1815,9 @@ MonoBehaviour:
   - Type: 4
     SynchronizeType: 1
     Name: isGlid
+  - Type: 9
+    SynchronizeType: 0
+    Name: Fire
   m_SynchronizeLayers:
   - SynchronizeType: 1
     LayerIndex: 0

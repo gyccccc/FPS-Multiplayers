@@ -5,7 +5,7 @@ using Photon.Pun;
 using System.Collections.Generic;
 using UnityEngine.Rendering;
 
-public class localManager : MonoBehaviour
+public class LocalManagerNew : MonoBehaviour
 {
     public List<MonoBehaviour> LocalScripts;
     public Camera FP_Camera;

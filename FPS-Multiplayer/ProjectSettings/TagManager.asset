@@ -23,6 +23,9 @@ TagManager:
   - ui
   - player
   - ai
+  - NormalSpawnPose
+  - GuillySpawnPose
+  - body
   layers:
   - Default
   - TransparentFX

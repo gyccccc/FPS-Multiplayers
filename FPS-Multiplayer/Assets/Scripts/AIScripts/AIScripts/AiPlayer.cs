@@ -10,6 +10,7 @@ public class AiPlayer : MonoBehaviour, IDamager
 {
     public int HeathAll;
     public int Heath;
+    public string BodyName;
     private PhotonView photonView;
     private HealthController healthController;
     private GameObject globalCamera;
@@ -55,8 +56,9 @@ public class AiPlayer : MonoBehaviour, IDamager
         {
             gameObject.SetActive(false);
             Vector3 tempPose = gameObject.transform.position;
-            PhotonNetwork.Destroy(this.gameObject);
-            PhotonNetwork.Instantiate("Body", tempPose, Quaternion.identity);
+            PhotonNetwork.Destroy(gameObject);
+            PhotonNetwork.Instantiate(BodyName, tempPose, Quaternion.identity);
+
             //
             //死亡就销毁，全部死亡游戏结束 
 

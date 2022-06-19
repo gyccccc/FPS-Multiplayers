@@ -45,6 +45,8 @@ public class launch : MonoBehaviourPunCallbacks
             new Photon.Realtime.RoomOptions() { MaxPlayers = 16 }, Photon.Realtime.TypedLobby.Default);
         joinedRoom = true;
         isServer = true;
+
+   
     }
 
     public override void OnConnectedToMaster()
@@ -62,7 +64,9 @@ public class launch : MonoBehaviourPunCallbacks
         PhotonNetwork.JoinRoom(RoomName.text);
         //GameObject.Find("LevelManager").SetActive(false);
         //GameObject.Find("GameManager").SetActive(false);
-        
+
+
+
     }
 
     public override void OnCreatedRoom()
@@ -82,6 +86,12 @@ public class launch : MonoBehaviourPunCallbacks
         Debug.Log("joined room");
         StartSpawn(0);
         Player.Respawn += StartSpawn;
+
+        if (isServer)
+        {
+            EnemyManager manager1 = GameObject.Find("EntityManager").GetComponent<EnemyManager>();
+            manager1.initEnemy(1);
+        }
     }
 
     public override void OnLeftRoom()
@@ -104,17 +114,24 @@ public class launch : MonoBehaviourPunCallbacks
         //GameObject player = PhotonNetwork.Instantiate(PlayerPrefabName, ship.transform.position, Quaternion.identity);
         GameObject player = PhotonNetwork.Instantiate(PlayerPrefabName, spawnPos, Quaternion.identity);
         //ship.GetComponent<shipManager>().boarding(player);
-        player.GetComponent<followShip>().temp = ship.GetComponent<shipManager>();
+        player.GetComponent<FollowShip>().temp = ship.GetComponent<shipManager>();
         ui.SetActive(true);
-        spawnPos.y = -26.63112f;
-        spawnPos.x = -25.34f;
-        spawnPos.z = -34f;
-        if (isServer)
-        {
-            GameObject ai = PhotonNetwork.Instantiate("ai", spawnPos, Quaternion.identity);
-            GameObject ai2 = PhotonNetwork.Instantiate("GhillieSuit_ai", spawnPos+offset, Quaternion.identity);
-            //ai.GetComponent<Nav>().goal = 
-        }
+        //spawnPos.y = -26.63112f;
+        //spawnPos.x = -25.34f;
+        //spawnPos.z = -34f;
+
+        //GameObject[] SpawnPoseList = GameObject.FindGameObjectsWithTag("GuillySpawnPose");
+        //if (isServer)
+        //{
+        //    PhotonNetwork.Instantiate("ai", spawnPos, Quaternion.identity);
+        //    PhotonNetwork.Instantiate("GhillieSuit_ai", spawnPos+offset, Quaternion.identity);
+        //    foreach (GameObject GuillySpawnPose in SpawnPoseList)
+        //    {
+        //        PhotonNetwork.Instantiate("GhillieSuit_ai", GuillySpawnPose.transform.position, Quaternion.identity);
+
+        //    }
+        //    //ai.GetComponent<Nav>().goal = 
+        //}
     }
 
 

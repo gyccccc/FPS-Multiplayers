@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class followShip : MonoBehaviour
+public class FollowShip : MonoBehaviour
 {
     public shipManager temp;
     public GameObject ship;
@@ -25,7 +25,7 @@ public class followShip : MonoBehaviour
         gameObject.transform.position += temp.offset;
         if (gameObject.transform.position.y < groundHeight)
         {
-            gameObject.GetComponent<followShip>().enabled = false;
+            gameObject.GetComponent<FollowShip>().enabled = false;
         }
 
     }

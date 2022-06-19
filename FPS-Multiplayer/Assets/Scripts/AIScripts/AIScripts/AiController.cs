@@ -24,7 +24,6 @@ public class AiController : MonoBehaviour
     //[SerializeField] internal Animator GunAnimator;
     public float SprintingSpeedWhenCrouched;
     public float WalkSpeedWhenCrouched;
-    public int DamagePerShoot = 10;
     public float FiringRange = 30;
     public int FindPlayerMaxDis = 40;
 
@@ -167,10 +166,9 @@ public class AiController : MonoBehaviour
 
 
 
-    public void Damage()
+    public void Damage(float DamageRate = 0.15f,int DamagePerShoot = 10)
     {
-        int temp1 = Random.Range(0, 6);
-        if (temp1 == 0)
+        if (Random.value < DamageRate)
         {
             if (this.target.TryGetComponent(out IDamager tmp_Damager))
             {

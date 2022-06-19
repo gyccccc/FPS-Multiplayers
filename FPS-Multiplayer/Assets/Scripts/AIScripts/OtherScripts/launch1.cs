@@ -82,7 +82,7 @@ public class launch1 : MonoBehaviourPunCallbacks
         GameObject ship = GameObject.FindGameObjectWithTag("ship");
         GameObject player = PhotonNetwork.Instantiate(PlayerPrefabName, ship.transform.position, Quaternion.identity);
         //ship.GetComponent<shipManager>().boarding(player);
-        player.GetComponent<followShip>().temp = ship.GetComponent<shipManager>();
+        player.GetComponent<FollowShip>().temp = ship.GetComponent<shipManager>();
     }
 
 

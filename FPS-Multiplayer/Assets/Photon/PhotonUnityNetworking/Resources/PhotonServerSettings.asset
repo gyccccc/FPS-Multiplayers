@@ -18,10 +18,10 @@ MonoBehaviour:
     AppIdChat: 
     AppIdVoice: 
     AppVersion: 
-    UseNameServer: 0
+    UseNameServer: 1
     FixedRegion: 
-    Server: 127.0.0.1
-    Port: 5055
+    Server: 
+    Port: 0
     ProxyServer: 
     Protocol: 0
     EnableProtocolFallback: 1
@@ -49,6 +49,7 @@ MonoBehaviour:
   - RPC_SwapWeapon2
   - AiRPC_HoldTrigger
   - RPC_AiHoldTrigger
+  - RPC_GameRound
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

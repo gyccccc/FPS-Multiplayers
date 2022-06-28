@@ -122,6 +122,7 @@ public class AiController : MonoBehaviour
         
         while(true)
         {
+            yield return new WaitForSeconds(WaitTime);
             PlayerList = GameObject.FindGameObjectsWithTag("player");
             this.target = null;
             foreach (GameObject player in PlayerList)
@@ -138,7 +139,6 @@ public class AiController : MonoBehaviour
                 StopFollow();
             }
             Debug.Log("find player ing...");
-            yield return new WaitForSeconds(WaitTime);
 
         }
         
@@ -170,14 +170,18 @@ public class AiController : MonoBehaviour
     {
         if (Random.value < DamageRate)
         {
-            if (this.target.TryGetComponent(out IDamager tmp_Damager))
+            if(this.target)
             {
-                tmp_Damager.TakeDamage(DamagePerShoot);
+                if (this.target.TryGetComponent(out IDamager tmp_Damager))
+                {
+                    tmp_Damager.TakeDamage(DamagePerShoot);
+                }
+
+                RaiseEventOptions tmp_RaiseEventOptions = new RaiseEventOptions() { Receivers = ReceiverGroup.All };
+                SendOptions tmp_SendOptions = SendOptions.SendReliable;
+                PhotonNetwork.RaiseEvent((byte)Scripts.Weapon.EventCode.HitObject, tmp_HitData, tmp_RaiseEventOptions, tmp_SendOptions);
             }
             
-            RaiseEventOptions tmp_RaiseEventOptions = new RaiseEventOptions() { Receivers = ReceiverGroup.All };
-            SendOptions tmp_SendOptions = SendOptions.SendReliable;
-            PhotonNetwork.RaiseEvent((byte)Scripts.Weapon.EventCode.HitObject, tmp_HitData, tmp_RaiseEventOptions, tmp_SendOptions);
         }
     }
 

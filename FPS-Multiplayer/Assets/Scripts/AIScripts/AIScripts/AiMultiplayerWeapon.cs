@@ -38,7 +38,7 @@ public class AiMultiplayerWeapon : Firearms
         {
             return;
         }
-        GunAnimator.SetLayerWeight(2, 1);
+        //GunAnimator.SetLayerWeight(2, 1);
         GunAnimator.SetTrigger(CurrentAmmo > 0 ? "ReloadLeft" : "ReloadOutOf");
 
         FirearmsReloadAudioSource.clip =

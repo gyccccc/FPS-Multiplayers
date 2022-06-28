@@ -39,6 +39,7 @@ public class WeaponManager : MonoBehaviour
     public LayerMask CheckItemLayerMask;
     private uiManager ui;
 
+    
 
     //private void UpdateAmmoInfo(int _ammo, int _remaningAmmo)
     //{

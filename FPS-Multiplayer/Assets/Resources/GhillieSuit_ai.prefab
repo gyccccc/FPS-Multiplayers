@@ -22960,12 +22960,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9921569, g: 0.23529413, b: 0.18039216, a: 1}
+  m_Color: {r: 0.9921569, g: 0.23529413, b: 0.95686275, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 63ea5ccc59659814faca69c6c4f9b32f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1ce36821b714e574d912f67235949af7, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -49370,8 +49370,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99afe8d5e78d3f5409bf816a3569400b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HeathAll: 100
-  Heath: 100
+  HeathAll: 20
+  Heath: 20
   BodyName: GhillieSuitBody
 --- !u!114 &7361552282024380426
 MonoBehaviour:
@@ -49428,8 +49428,8 @@ MonoBehaviour:
   WalkSpeed: 0
   SprintingSpeedWhenCrouched: 0
   WalkSpeedWhenCrouched: 0
-  FiringRange: 30
-  FindPlayerMaxDis: 40
+  FiringRange: 50
+  FindPlayerMaxDis: 50
   RayPoint: {fileID: 3858754015875345098}
   HeadPoint: {fileID: 8189795562538798970}
   Gravity: 9.8

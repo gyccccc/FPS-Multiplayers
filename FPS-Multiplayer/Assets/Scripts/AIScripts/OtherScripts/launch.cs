@@ -16,6 +16,7 @@ public class launch : MonoBehaviourPunCallbacks
     public Vector3 SpawnPoint;
     public GameObject ship;
     private GameObject ui;
+    public GameObject Menu;
     public GameObject GameManager;
     public GameObject LevelManager;
     public Vector3 offset = new Vector3(3, 3, 3);
@@ -45,7 +46,7 @@ public class launch : MonoBehaviourPunCallbacks
             new Photon.Realtime.RoomOptions() { MaxPlayers = 16 }, Photon.Realtime.TypedLobby.Default);
         joinedRoom = true;
         isServer = true;
-
+        Menu.SetActive(false);
    
     }
 
@@ -62,8 +63,10 @@ public class launch : MonoBehaviourPunCallbacks
             return;
         }
         PhotonNetwork.JoinRoom(RoomName.text);
-        //GameObject.Find("LevelManager").SetActive(false);
-        //GameObject.Find("GameManager").SetActive(false);
+        GameObject.Find("LevelManager").SetActive(false);
+        GameObject.Find("GameManager").SetActive(false);
+        Menu.SetActive(false);
+
 
 
 
@@ -89,7 +92,7 @@ public class launch : MonoBehaviourPunCallbacks
 
         if (isServer)
         {
-            EnemyManager manager1 = GameObject.Find("EntityManager").GetComponent<EnemyManager>();
+            LevelManager manager1 = GameObject.Find("EntityManager").GetComponent<LevelManager>();
             manager1.initEnemy(1);
         }
     }
@@ -116,6 +119,8 @@ public class launch : MonoBehaviourPunCallbacks
         //ship.GetComponent<shipManager>().boarding(player);
         player.GetComponent<FollowShip>().temp = ship.GetComponent<shipManager>();
         ui.SetActive(true);
+        uiManager um = ui.GetComponent<uiManager>();
+        um.GameRound(0);
         //spawnPos.y = -26.63112f;
         //spawnPos.x = -25.34f;
         //spawnPos.z = -34f;

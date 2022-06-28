@@ -16,7 +16,7 @@ public class AiPlayer : MonoBehaviour, IDamager
     private GameObject globalCamera;
     //public GameObject ui;
     //public uiManager uimanager;
-    public static event Action<float> Respawn;
+    //public static event Action<float> Respawn;
 
     private void Start()
     {

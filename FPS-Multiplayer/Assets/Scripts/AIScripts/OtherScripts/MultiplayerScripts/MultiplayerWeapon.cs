@@ -14,7 +14,7 @@ public class MultiplayerWeapon : Firearms
         MuzzleParticle.Play();
         CurrentAmmo -= 1;
         //GunAnimator.Play("Fire",  0, 0);
-        GunAnimator.SetLayerWeight(2, 1);
+        //GunAnimator.SetLayerWeight(2, 1);
         GunAnimator.SetTrigger("Fire");
         CasingParticle.Play();
         //FirearmsReloadAudioSource.clip =
@@ -33,7 +33,7 @@ public class MultiplayerWeapon : Firearms
         {
             return;
         }
-        GunAnimator.SetLayerWeight(2, 1);
+        //GunAnimator.SetLayerWeight(2, 1);
         GunAnimator.SetTrigger(CurrentAmmo > 0 ? "ReloadLeft" : "ReloadOutOf");
 
         FirearmsReloadAudioSource.clip =

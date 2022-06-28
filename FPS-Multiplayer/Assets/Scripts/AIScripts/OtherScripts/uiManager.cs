@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Pun;
 
+[RequireComponent(typeof(PhotonView))]
 public class uiManager : MonoBehaviour
 {
     // Start is called before the first frame update\
@@ -11,14 +13,32 @@ public class uiManager : MonoBehaviour
     public GameObject m416;
     public GameObject glock;
     public GameObject bigmap;
+    public GameObject RoundBar;
+    private PhotonView photonView;
 
     public Text AmmoCountTextLabel;
     public Image healthBar;
     public Text healthText;
+    public Text Round;
+
+
+    private int rn = 1;
+
+    private IEnumerator ShowRoundIE;
     void Start()
     {
+        photonView = GetComponent<PhotonView>();
         //RedPoint.SetActive(false);
         //bigmap.SetActive(map);
+
+        //if (ShowRoundIE != null)
+        //{
+        //    StopCoroutine(ShowRoundIE);
+        //    ShowRoundIE = null;
+        //}
+
+        //ShowRoundIE = ShouRound(1);
+        //StartCoroutine(ShowRoundIE);
 
     }
 
@@ -86,6 +106,66 @@ public class uiManager : MonoBehaviour
             healthBar.fillAmount = healthNow / healthAll;
             healthText.text = healthNow + "/" + healthAll;
         }
+
+    }
+
+    public void GameRound(int roundNumb)
+    {
+        //if (roundNumb < 1)
+        //    roundNumb = rn;
+        //if (ShowRoundIE != null)
+        //{
+        //    StopCoroutine(ShowRoundIE);
+        //    ShowRoundIE = null;
+        //}
+
+        //ShowRoundIE = ShowRound(roundNumb);
+        //StartCoroutine(ShowRoundIE);
+
+        //rn = roundNumb;
+        if(photonView)
+        {
+            photonView.RpcSecure("RPC_GameRound", RpcTarget.All, true, roundNumb);
+
+        }
+    }
+
+
+    public void GameOver()
+    {
+        Hide hide = RoundBar.GetComponent<Hide>();
+        Round.text = "GAME OVER!";
+        hide.Show();
+    }
+
+
+    private IEnumerator ShowRound(int roundnum)
+    {
+
+        Hide hide = RoundBar.GetComponent<Hide>();
+        Round.text = "ROUND  " + roundnum;
+        hide.Show();
+        yield return new WaitForSeconds(3);
+        hide.Hiding();
+    }
+
+
+
+    [PunRPC]
+    private void RPC_GameRound(int _roundNumb, PhotonMessageInfo _info)
+    {
+        if (_roundNumb < 1)
+            _roundNumb = rn;
+        if (ShowRoundIE != null)
+        {
+            StopCoroutine(ShowRoundIE);
+            ShowRoundIE = null;
+        }
+
+        ShowRoundIE = ShowRound(_roundNumb);
+        StartCoroutine(ShowRoundIE);
+
+        rn = _roundNumb;
 
     }
 }

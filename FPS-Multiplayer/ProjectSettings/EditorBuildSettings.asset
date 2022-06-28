@@ -15,6 +15,6 @@ EditorBuildSettings:
     path: "Assets/\u65B0\u5EFA\u6587\u4EF6\u5939/connect.unity"
     guid: a604cdf77f5e40f49b40712f5752ba00
   - enabled: 1
-    path: "Assets/\u65B0\u5EFA\u6587\u4EF6\u5939/3.7.1700.unity"
+    path: "Assets/\u65B0\u5EFA\u6587\u4EF6\u5939/GamaWorld.unity"
     guid: 192aef8862a0f0540806ab3a1a311f5b
   m_configObjects: {}

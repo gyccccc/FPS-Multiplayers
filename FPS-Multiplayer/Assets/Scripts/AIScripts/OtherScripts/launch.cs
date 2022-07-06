@@ -46,7 +46,7 @@ public class launch : MonoBehaviourPunCallbacks
             new Photon.Realtime.RoomOptions() { MaxPlayers = 16 }, Photon.Realtime.TypedLobby.Default);
         joinedRoom = true;
         isServer = true;
-        Menu.SetActive(false);
+        //Menu.SetActive(false);
    
     }
 
@@ -64,8 +64,7 @@ public class launch : MonoBehaviourPunCallbacks
         }
         PhotonNetwork.JoinRoom(RoomName.text);
         GameObject.Find("LevelManager").SetActive(false);
-        GameObject.Find("GameManager").SetActive(false);
-        Menu.SetActive(false);
+        GameObject.Find("GameWorld").SetActive(false);
 
 
 
@@ -74,6 +73,7 @@ public class launch : MonoBehaviourPunCallbacks
 
     public override void OnCreatedRoom()
     {
+
         base.OnCreatedRoom();
         GameManager.SetActive(true);
         LevelManager.SetActive(true);
@@ -95,6 +95,8 @@ public class launch : MonoBehaviourPunCallbacks
             LevelManager manager1 = GameObject.Find("EntityManager").GetComponent<LevelManager>();
             manager1.initEnemy(1);
         }
+        Menu.SetActive(false);
+
     }
 
     public override void OnLeftRoom()
@@ -113,6 +115,7 @@ public class launch : MonoBehaviourPunCallbacks
     {
         yield return new WaitForSeconds(_timeToSpawn);
         GameObject ship = GameObject.FindGameObjectWithTag("ship");
+        
         Vector3 spawnPos = new Vector3(ship.transform.position.x + Random.Range(0, 20), ship.transform.position.y, ship.transform.position.z);
         //GameObject player = PhotonNetwork.Instantiate(PlayerPrefabName, ship.transform.position, Quaternion.identity);
         GameObject player = PhotonNetwork.Instantiate(PlayerPrefabName, spawnPos, Quaternion.identity);
@@ -120,23 +123,8 @@ public class launch : MonoBehaviourPunCallbacks
         player.GetComponent<FollowShip>().temp = ship.GetComponent<shipManager>();
         ui.SetActive(true);
         uiManager um = ui.GetComponent<uiManager>();
-        um.GameRound(0);
-        //spawnPos.y = -26.63112f;
-        //spawnPos.x = -25.34f;
-        //spawnPos.z = -34f;
+        um.GameRoundThis(0);
 
-        //GameObject[] SpawnPoseList = GameObject.FindGameObjectsWithTag("GuillySpawnPose");
-        //if (isServer)
-        //{
-        //    PhotonNetwork.Instantiate("ai", spawnPos, Quaternion.identity);
-        //    PhotonNetwork.Instantiate("GhillieSuit_ai", spawnPos+offset, Quaternion.identity);
-        //    foreach (GameObject GuillySpawnPose in SpawnPoseList)
-        //    {
-        //        PhotonNetwork.Instantiate("GhillieSuit_ai", GuillySpawnPose.transform.position, Quaternion.identity);
-
-        //    }
-        //    //ai.GetComponent<Nav>().goal = 
-        //}
     }
 
 

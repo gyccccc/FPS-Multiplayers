@@ -131,11 +131,30 @@ public class uiManager : MonoBehaviour
     }
 
 
+    public void GameRoundThis(int _roundNumb)
+    {
+        if (_roundNumb < 1)
+            _roundNumb = rn;
+        if (ShowRoundIE != null)
+        {
+            StopCoroutine(ShowRoundIE);
+            ShowRoundIE = null;
+        }
+
+        ShowRoundIE = ShowRound(_roundNumb);
+        StartCoroutine(ShowRoundIE);
+
+        rn = _roundNumb;
+    }
+
+
     public void GameOver()
     {
-        Hide hide = RoundBar.GetComponent<Hide>();
-        Round.text = "GAME OVER!";
-        hide.Show();
+        if (photonView)
+        {
+            photonView.RpcSecure("RPC_GameOver", RpcTarget.All, true);
+
+        }
     }
 
 
@@ -167,5 +186,14 @@ public class uiManager : MonoBehaviour
 
         rn = _roundNumb;
 
+    }
+
+
+    [PunRPC]
+    private void RPC_GameOver(PhotonMessageInfo _info)
+    {
+        Hide hide = RoundBar.GetComponent<Hide>();
+        Round.text = "GAME OVER!";
+        hide.Show();
     }
 }

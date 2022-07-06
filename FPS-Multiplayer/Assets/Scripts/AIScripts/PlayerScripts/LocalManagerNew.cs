@@ -15,6 +15,7 @@ public class LocalManagerNew : MonoBehaviour
     public List<Renderer> TPRenderers;
     public GameObject FPArms;
     public MipmapCameraManager MipmapManager;
+    public AudioListener audioLis;
 
     private void Start()
     {
@@ -32,6 +33,7 @@ public class LocalManagerNew : MonoBehaviour
         FPArms.SetActive(false);
         FP_Camera.enabled = false;
         ENV_Camera.enabled = false;
+        audioLis.enabled = false;
         
 
 

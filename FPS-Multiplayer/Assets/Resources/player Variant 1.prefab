@@ -75843,6 +75843,7 @@ MonoBehaviour:
   - {fileID: 600583391278695936}
   FPArms: {fileID: 7514696776920260714}
   MipmapManager: {fileID: 0}
+  audioLis: {fileID: 5073603667580050700}
 --- !u!81 &5073603667580050700
 AudioListener:
   m_ObjectHideFlags: 0

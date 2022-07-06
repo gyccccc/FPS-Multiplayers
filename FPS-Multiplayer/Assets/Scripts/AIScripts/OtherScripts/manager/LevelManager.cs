@@ -75,7 +75,7 @@ public class LevelManager : MonoBehaviour
         StartCoroutine(FindAiIE);
     }
 
-    private void clearEnemy()
+    public void clearEnemy()
     {
         GameObject[] BodyList = GameObject.FindGameObjectsWithTag("body");
 

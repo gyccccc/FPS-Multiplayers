@@ -9112,6 +9112,7 @@ MonoBehaviour:
   - {fileID: 6138139320641579191}
   FPArms: {fileID: 4548684804625233897}
   MipmapManager: {fileID: 0}
+  audioLis: {fileID: 0}
 --- !u!114 &3517387570409463557
 MonoBehaviour:
   m_ObjectHideFlags: 0
